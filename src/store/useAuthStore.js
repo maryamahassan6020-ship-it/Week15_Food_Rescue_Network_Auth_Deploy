@@ -1,0 +1,33 @@
+import { create } from "zustand";
+
+// SKELETON — fill in the four actions, following the auth demo from class.
+// It uses the DummyJSON auth API. The state is done for you.
+const API = "https://dummyjson.com";
+
+export const useAuthStore = create((set, get) => ({
+  // The token starts from localStorage, so a refresh keeps you logged in.
+  token: localStorage.getItem("token") || null,
+  user: null,
+  status: "idle", // "idle" | "loading" | "error"
+  error: "",
+
+  // TODO: login(username, password)
+  //   POST `${API}/auth/login` with { username, password }.
+  //   On success: save data.accessToken to localStorage, set({ token, user }); return true.
+  //   On a bad login: set({ error: ... }); return false.
+  login: async (username, password) => {},
+
+  // TODO: fetchMe()
+  //   If there is no token, return. Otherwise GET `${API}/auth/me`
+  //   with the header  Authorization: `Bearer ${token}`  and set({ user }).
+  //   If it fails, call logout().
+  fetchMe: async () => {},
+
+  // TODO: signup(details)
+  //   POST `${API}/users/add` with details; return the created account.
+  signup: async (details) => {},
+
+  // TODO: logout()
+  //   Remove the token from localStorage, then set({ token: null, user: null }).
+  logout: () => {},
+}));
